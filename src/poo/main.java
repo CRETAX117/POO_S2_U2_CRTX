@@ -15,7 +15,7 @@ import java.util.*;
 import uni1a.*;    // Pelicula, SerieDeTV, Documental, Temporada, ContenidoAudiovisual
 import modified.*; // Actor, Investigador, YouTubeVideo, TikTokVideo
 
-public class GestorContenidoApp {
+public class main {
 
     //Catálogo general
     private static final List<ContenidoAudiovisual> catalogo = new ArrayList<>();
@@ -187,6 +187,10 @@ public class GestorContenidoApp {
     //  UTILIDADES DE ENTRADA
     private static void mostrarMenuPrincipal() {
         System.out.println("""
+        	----  Creado por Brandon Cárdenas ----
+        	Unidad 2 POO
+        	Relaciones de Clases	
+        	
             ===== GESTOR DE CONTENIDO AUDIOVISUAL =====
             1) Nueva Película
             2) Nueva Serie de TV
