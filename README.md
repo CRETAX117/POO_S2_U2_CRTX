@@ -32,7 +32,7 @@ Subclases nuevas de ContenidoAudiovisual (Etapa 4):
 
 Instalación y ejecución rápida:
 
-1. git clone [https://github.com/](https://github.com/)\<tu‑usuario>/poo\_unidad2.git
+1. git clone
 2. cd poo\_unidad2
 3. Compilar: javac -d bin \$(find src -name "\*.java")
 4. Ejecutar: java -cp bin unia.PruebaEtapa2
