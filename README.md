@@ -1,51 +1,64 @@
-Proyecto: Sistema de Gestión de Contenidos Audiovisuales (Unidad 2 – POO)
+# GestorContenidoApp - POO_S2_U2_CRTX
 
-Objetivo:
-Ampliar el proyecto base de la Unidad 1 aplicando herencia, asociación, agregación y composición. Se añaden nuevas clases y relaciones para entregar un sistema funcional.
+Programación Orientada a Objetos • Universidad Politécnica Salesiana
 
-Estructura del repositorio:
+---
 
-* src/
+## Objetivos y propósito
 
-  * unia/ (código original)
+Este proyecto es una **aplicación de consola** para demostrar los principios de Programación Orientada a Objetos (POO) mediante la gestión de contenido audiovisual: películas, series, documentales y videos de redes sociales. Permite crear, relacionar y mostrar entidades complejas y sus interacciones.
 
-    * ContenidoAudiovisual.java
-    * Pelicula.java
-    * SerieDeTV.java
-    * Documental.java
-  * modificaciones/ (clases añadidas en Unidad 2)
+## Clases y funcionalidades nuevas
 
-    * Actor.java
-    * Temporada.java
-    * Investigador.java
-* diagramas/diagrama\_clases.png
+- **Modelo de dominio**:
+  - ContenidoAudiovisual (abstracta)
+  - Pelicula, Documental, SerieDeTV (herencia)
+  - Actor, Investigador, Temporada
+  - TikTokVideo, YouTubeVideo
+- **GestorContenidoApp**:
+  - Menú interactivo por consola
+  - Métodos para crear y manipular todas las clases usando constructores parametrizados
+  - Agregar actores, investigadores, temporadas, colaboradores
+  - Mostrar catálogo completo con detalles y relaciones
+- **Diagramas PlantUML** para visualizar herencias, agregaciones y composiciones.
 
-Clases añadidas:
+## Instrucciones para clonar y ejecutar
 
-* Actor  → asociada a Pelicula
-* Temporada → composición en SerieDeTV
-* Investigador → agregación en Documental
+1. **Clonar el repositorio**:
+   ```
+   git clone https://github.com/CRETAX117/POO_S2_U2_CRTX.git
+   cd POO_S2_U2_CRTX
+   ```
+2. **Crear commits adicionales** (ya presentes):
+   - Initial commit: Estructura base del proyecto
+   - Implement domain methods: agregarActor, agregarTemporada, etc.
+   - Add social media classes: TikTokVideo, YouTubeVideo
+3. **Importar en NetBeans**:
+   - File → Open Project → Selecciona la carpeta raíz del proyecto
+   - Ejecuta POO_S2_U2_CRTX desde el IDE **O compilar/ejecutar en consola**:
+   ```
+   mkdir bin
+   javac -d bin src/uni1a/*.java src/modified/*.java src/poo/*.java
+   java -cp bin poo.GestorContenidoApp
+   ```
 
-Subclases nuevas de ContenidoAudiovisual (Etapa 4):
+## Historial de commits mínimos
 
-* (pendiente de crear: por ejemplo VideoYouTube, Cortometraje)
+1. Initial commit: Estructura de paquetes y clases base  
+2. Add interactive menu: GestorContenidoApp con menú y operaciones básicas  
+3. Implement domain methods: agregarActor, agregarInvestigador, agregarTemporada  
+4. Add social media classes: Incorporación de TikTokVideo y YouTubeVideo  
 
-Instalación y ejecución rápida:
+## Mejoras adicionales
 
-1. git clone
-2. cd poo\_unidad2
-3. Compilar: javac -d bin \$(find src -name "\*.java")
-4. Ejecutar: java -cp bin unia.PruebaEtapa2
+- Validaciones de entradas en el menú  
+- Diagramas UML generados con PlantUML  
+- Uso de Collections.unmodifiableList para proteger colecciones  
+- Posibilidad de añadir pruebas unitarias con JUnit en el futuro  
 
-Pruebas:
+---
 
-* La clase PruebaEtapa2 crea objetos de todas las clases y muestra resultados en consola.
-
-Mejoras implementadas:
-
-* Uso de arrays/listas para colecciones.
-* Separación de paquetes.
-* Diagrama UML incorporado.
-
-Licencia:
-Proyecto académico – Universidad Politécnica Salesiana.
+¡Gracias por probar el sistema!  
+Desarrollado en la Universidad Politécnica Salesiana  
+Asignatura: Programación Orientada a Objetos  
+Autor: Brandon Cárdenas
