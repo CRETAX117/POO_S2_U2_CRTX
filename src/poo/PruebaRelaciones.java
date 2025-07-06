@@ -1,87 +1,63 @@
-/**
- * Class PruebaRelaciones
- * Demuestra las relaciones implementadas entre las clases
- */
 package poo;
 
 import uni1a.*;
-
 import modified.*;
 
 public class PruebaRelaciones {
+
     public static void main(String[] args) {
-        System.out.println("=== DEMOSTRACIÓN DE RELACIONES ENTRE CLASES ===\n");
 
-        // 1. Prueba de relación Actor - Película (Asociación)
-        System.out.println("1. RELACIÓN ACTOR - PELÍCULA (ASOCIACIÓN)");
-        System.out.println("==========================================");
-        
-        // Crear actores
-        Actor actor1 = new Actor("Tom", "Hanks", 65, "Estadounidense", "Drama");
-        Actor actor2 = new Actor("Julia", "Roberts", 55, "Estadounidense", "Romance");
-        
-        // Crear película
-        Pelicula pelicula = new Pelicula("Forrest Gump", 142, "Drama", "Paramount Pictures");
-        
-        // Establecer relación (asociación)
+        System.out.println("=== INICIO RELACIONES ===\n");
+
+        // === 1. ACTORES ===
+        Actor actor1 = new Actor("Hugh", "Laurie", 64, "Reino Unido", "Drama médico");
+        Actor actor2 = new Actor("Rami", "Malek", 43, "EE.UU.", "Thriller");
+        Actor actor3 = new Actor("Yusuke", "Kobayashi", 38, "Japón", "Voz");
+        Actor actor4 = new Actor("Lisa", "Edelstein", 57, "EE.UU.", "Drama");
+        Actor actor5 = new Actor("Christian", "Slater", 54, "EE.UU.", "Thriller");
+
+        // === 2. INVESTIGADORES ===
+        Investigador inv1 = new Investigador("Senku", "Ishigami", "Ciencia Aplicada", "Instituto Ishigami", 6, "PhD");
+        Investigador inv2 = new Investigador("Chrome", "S.", "Química Orgánica", "Laboratorio Primario", 3, "Licenciado");
+
+        // === 3. PELÍCULA ===
+        Pelicula pelicula = new Pelicula("House: Diagnóstico Final", 120, "Drama médico", "Fox");
         pelicula.agregarActor(actor1);
-        pelicula.agregarActor(actor2);
-        
-        // Mostrar información
+        pelicula.agregarActor(actor4);
+        pelicula.eliminarActor(actor4); // simula edición
+        pelicula.agregarActor(actor3);  // colaboración externa
+
+        // === 4. SERIE ===
+        SerieDeTV serie = new SerieDeTV("Mr. Robot", 55, "Thriller psicológico", 0);
+
+        Temporada t1 = new Temporada(1, 10, 55, "01/06/2015", "01/09/2015");
+        t1.agregarEpisodio("eps1.0_hellofriend.mov");
+        t1.agregarEpisodio("eps1.1_ones-and-zer0es.mpeg");
+
+        Temporada t2 = new Temporada(2, 12, 55, "15/06/2016", "15/09/2016");
+        t2.agregarEpisodio("eps2.0_unm4sk-pt1.tc");
+
+        serie.agregarTemporada(t1);
+        serie.agregarTemporada(t2);
+        serie.eliminarTemporada(t1); // simula error y corrección
+        serie.agregarTemporada(t1); // vuelve a agregar
+
+        // === 5. DOCUMENTAL ===
+        Documental doc = new Documental("La ciencia de Dr. Stone", 60, "Ciencia ficción", "Análisis científico del anime");
+        doc.agregarInvestigador(inv1);
+        doc.agregarInvestigador(inv2);
+        doc.eliminarInvestigador(inv2); // simulación de modificación
+
+        // === 6. MOSTRAR DATOS ===
+        System.out.println("------ Película ------");
         pelicula.mostrarDetalles();
-        actor1.mostrarInformacion();
-        actor2.mostrarInformacion();
 
-        // 2. Prueba de relación Temporada - SerieDeTV (Composición)
-        System.out.println("2. RELACIÓN TEMPORADA - SERIE DE TV (COMPOSICIÓN)");
-        System.out.println("=================================================");
-        
-        // Crear serie de TV
-        SerieDeTV serie = new SerieDeTV("Breaking Bad", 45, "Drama", 0);
-        
-        // Crear temporadas (composición - las temporadas pertenecen a la serie)
-        Temporada temp1 = new Temporada(1, 7, 45, "20/01/2008", "09/03/2008");
-        temp1.agregarEpisodio("Pilot");
-        temp1.agregarEpisodio("Cat's in the Bag...");
-        temp1.agregarEpisodio("...And the Bag's in the River");
-        
-        Temporada temp2 = new Temporada(2, 13, 45, "08/03/2009", "31/05/2009");
-        temp2.agregarEpisodio("Seven Thirty-Seven");
-        temp2.agregarEpisodio("Grilled");
-        temp2.agregarEpisodio("Bit by a Dead Bee");
-        
-        // Establecer relación (composición)
-        serie.agregarTemporada(temp1);
-        serie.agregarTemporada(temp2);
-        
-        // Mostrar información
+        System.out.println("------ Serie ------");
         serie.mostrarDetalles();
-        temp1.mostrarInformacion();
-        temp2.mostrarInformacion();
 
-        // 3. Prueba de relación Investigador - Documental (Asociación)
-        System.out.println("3. RELACIÓN INVESTIGADOR - DOCUMENTAL (ASOCIACIÓN)");
-        System.out.println("==================================================");
-        
-        // Crear investigadores
-        Investigador inv1 = new Investigador("Carlos", "Méndez", "Biología Marina", 
-                                            "Universidad de Guayaquil", 15, "PhD");
-        Investigador inv2 = new Investigador("Ana", "García", "Oceanografía", 
-                                            "Instituto Oceanográfico", 12, "MSc");
-        
-        // Crear documental
-        Documental documental = new Documental("Los Secretos del Océano", 120, "Científico", 
-                                              "Vida marina en las profundidades");
-        
-        // Establecer relación (asociación)
-        documental.agregarInvestigador(inv1);
-        documental.agregarInvestigador(inv2);
-        
-        // Mostrar información
-        documental.mostrarDetalles();
-        inv1.mostrarInformacion();
-        inv2.mostrarInformacion();
+        System.out.println("------ Documental ------");
+        doc.mostrarDetalles();
 
-        System.out.println("=== FIN DE LA DEMOSTRACIÓN ===");
+        System.out.println("\n=== FIN RELACIONES ===");
     }
-} 
+}

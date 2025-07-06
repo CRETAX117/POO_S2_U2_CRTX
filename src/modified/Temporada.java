@@ -1,6 +1,10 @@
 /**
- * Class Temporada
- * Representa una temporada de una serie de televisión
+ * Universidad Politecnica Salesiana
+ * Brandon Cárdenas
+ * Unidad 2
+ * Clase Temporada
+ *
+ * 
  */
 package modified;
 
@@ -87,6 +91,8 @@ public class Temporada {
     public int getDuracionTotalTemporada() {
         return numeroEpisodios * duracionPromedioEpisodio;
     }
+    
+    
 
     public void mostrarInformacion() {
         System.out.println("Información de la Temporada " + numeroTemporada + ":");
