@@ -21,7 +21,7 @@ public class TikTokVideo extends ContenidoAudiovisual {
 
     public TikTokVideo(String titulo, int duracionSeg, String genero,
                        String usuario, long visualizaciones,
-                       long likes, long shares, Actor protagonista) {
+                       long likes, long shares, Actor protagonista) throws util.DuracionInvalidaException {
         // Se almacena en minutos aproximados
         super(titulo, (int) Math.ceil(duracionSeg / 60.0), genero);
         this.usuario         = usuario;

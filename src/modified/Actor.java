@@ -12,14 +12,19 @@ public class Actor {
     private String apellido;
     private int edad;
     private String nacionalidad;
-    private String rubro; // drama, comedia, acción, etc.
+    // Rubro o especialidad del actor (drama, comedia, acción, etc.)
+    private String rubro;
 
     public Actor(String nombre, String apellido, int edad, String nacionalidad, String rubro) {
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.edad = edad;
+        this.nombre       = nombre;
+        this.apellido     = apellido;
+        // Validamos que la edad sea positiva
+        if (edad < 0) {
+            throw new IllegalArgumentException("La edad no puede ser negativa");
+        }
+        this.edad         = edad;
         this.nacionalidad = nacionalidad;
-        this.rubro = rubro;
+        this.rubro        = rubro;
     }
 
     // Getters y Setters
@@ -55,11 +60,19 @@ public class Actor {
         this.nacionalidad = nacionalidad;
     }
 
-    public String getrubro() {
+    /**
+     * Obtiene el rubro o especialidad del actor.
+     * @return rubro asociado al actor
+     */
+    public String getRubro() {
         return rubro;
     }
 
-    public void setrubro(String rubro) {
+    /**
+     * Modifica el rubro o especialidad del actor.
+     * @param rubro nuevo rubro
+     */
+    public void setRubro(String rubro) {
         this.rubro = rubro;
     }
 
@@ -72,7 +85,15 @@ public class Actor {
         System.out.println("Nombre completo: " + getNombreCompleto());
         System.out.println("Edad: " + edad + " años");
         System.out.println("Nacionalidad: " + nacionalidad);
-        System.out.println("rubro: " + rubro);
+        System.out.println("Rubro: " + rubro);
         System.out.println();
+    }
+
+    /**
+     * Devuelve una representación en cadena del actor.
+     */
+    @Override
+    public String toString() {
+        return getNombreCompleto() + " (" + nacionalidad + ", " + rubro + ")";
     }
 } 

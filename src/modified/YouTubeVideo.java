@@ -21,7 +21,7 @@ public class YouTubeVideo extends ContenidoAudiovisual {
     private final List<Actor> colaboradores = new ArrayList<>();
 
     public YouTubeVideo(String titulo, int duracionMin, String genero,
-                        String canal, long visualizaciones, long likes) {
+                        String canal, long visualizaciones, long likes) throws util.DuracionInvalidaException {
         super(titulo, duracionMin, genero);
         this.canal           = canal;
         this.visualizaciones = visualizaciones;

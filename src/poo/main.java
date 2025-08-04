@@ -14,6 +14,7 @@ import java.util.*;
 //Clases
 import uni1a.*;    // Pelicula, SerieDeTV, Documental, Temporada, ContenidoAudiovisual
 import modified.*; // Actor, Investigador, YouTubeVideo, TikTokVideo
+import util.DuracionInvalidaException;
 
 public class main {
 
@@ -49,21 +50,24 @@ public class main {
         String genero   = leerTexto("Género: ");
         String estudio  = leerTexto("Estudio: ");
 
-        Pelicula peli = new Pelicula(titulo, duracion, genero, estudio);
-        catalogo.add(peli);
+        try {
+            Pelicula peli = new Pelicula(titulo, duracion, genero, estudio);
+            catalogo.add(peli);
+            System.out.println(">> Película creada. Añada actores (vacío para terminar).");
+            while (true) {
+                String nombre = leerTexto("Nombre actor (ENTER para terminar): ");
+                if (nombre.isBlank()) break;
+                String apellido = leerTexto("Apellido: ");
+                int edad        = leerEntero("Edad: ");
+                String pais     = leerTexto("Nacionalidad: ");
+                String rubro    = leerTexto("Especialidad/Rubro: ");
 
-        System.out.println(">> Película creada. Añada actores (vacío para terminar).");
-        while (true) {
-            String nombre = leerTexto("Nombre actor (ENTER para terminar): ");
-            if (nombre.isBlank()) break;
-            String apellido = leerTexto("Apellido: ");
-            int edad        = leerEntero("Edad: ");
-            String pais     = leerTexto("Nacionalidad: ");
-            String rubro    = leerTexto("Especialidad/Rubro: ");
-
-            Actor a = new Actor(nombre, apellido, edad, pais, rubro);
-            peli.agregarActor(a);
-            System.out.println("Actor añadido.");
+                Actor a = new Actor(nombre, apellido, edad, pais, rubro);
+                peli.agregarActor(a);
+                System.out.println("Actor añadido.");
+            }
+        } catch (DuracionInvalidaException e) {
+            System.out.println("No se pudo crear la película: " + e.getMessage());
         }
     }
 
@@ -73,20 +77,23 @@ public class main {
         int duracion  = leerEntero("Duración promedio episodio (min): ");
         String genero = leerTexto("Género: ");
 
-        SerieDeTV serie = new SerieDeTV(titulo, duracion, genero, 0);
-        catalogo.add(serie);
-
-        System.out.println(">> Añada temporadas (0 para terminar).");
-        while (true) {
-            int numTemp = leerEntero("Número de temporada (0 para terminar): ");
-            if (numTemp == 0) break;
-            int episodios = leerEntero("Cantidad de episodios: ");
-            int durEp     = leerEntero("Duración promedio: ");
-            String fIni   = leerTexto("Fecha inicio (dd/mm/aaaa): ");
-            String fFin   = leerTexto("Fecha fin (dd/mm/aaaa): ");
-            Temporada t   = new Temporada(numTemp, episodios, durEp, fIni, fFin);
-            serie.agregarTemporada(t);
-            System.out.println("Temporada añadida.\n");
+        try {
+            SerieDeTV serie = new SerieDeTV(titulo, duracion, genero, 0);
+            catalogo.add(serie);
+            System.out.println(">> Añada temporadas (0 para terminar).");
+            while (true) {
+                int numTemp = leerEntero("Número de temporada (0 para terminar): ");
+                if (numTemp == 0) break;
+                int episodios = leerEntero("Cantidad de episodios: ");
+                int durEp     = leerEntero("Duración promedio: ");
+                String fIni   = leerTexto("Fecha inicio (dd/mm/aaaa): ");
+                String fFin   = leerTexto("Fecha fin (dd/mm/aaaa): ");
+                Temporada t   = new Temporada(numTemp, episodios, durEp, fIni, fFin);
+                serie.agregarTemporada(t);
+                System.out.println("Temporada añadida.\n");
+            }
+        } catch (DuracionInvalidaException e) {
+            System.out.println("No se pudo crear la serie: " + e.getMessage());
         }
     }
 
@@ -97,22 +104,25 @@ public class main {
         String genero  = leerTexto("Género: ");
         String tema    = leerTexto("Tema central: ");
 
-        Documental doc = new Documental(titulo, duracion, genero, tema);
-        catalogo.add(doc);
+        try {
+            Documental doc = new Documental(titulo, duracion, genero, tema);
+            catalogo.add(doc);
+            System.out.println(">> Añada investigadores (vacío para terminar).");
+            while (true) {
+                String nombre = leerTexto("Nombre investigador (ENTER para terminar): ");
+                if (nombre.isBlank()) break;
+                String apellido = leerTexto("Apellido: ");
+                String especial = leerTexto("Especialidad: ");
+                String inst     = leerTexto("Institución: ");
+                int aniosExp    = leerEntero("Años experiencia: ");
+                String grado    = leerTexto("Grado académico (BSc/MSc/PhD): ");
 
-        System.out.println(">> Añada investigadores (vacío para terminar).");
-        while (true) {
-            String nombre = leerTexto("Nombre investigador (ENTER para terminar): ");
-            if (nombre.isBlank()) break;
-            String apellido = leerTexto("Apellido: ");
-            String especial = leerTexto("Especialidad: ");
-            String inst     = leerTexto("Institución: ");
-            int aniosExp    = leerEntero("Años experiencia: ");
-            String grado    = leerTexto("Grado académico (BSc/MSc/PhD): ");
-
-            Investigador i = new Investigador(nombre, apellido, especial, inst, aniosExp, grado);
-            doc.agregarInvestigador(i);
-            System.out.println("Investigador añadido.");
+                Investigador i = new Investigador(nombre, apellido, especial, inst, aniosExp, grado);
+                doc.agregarInvestigador(i);
+                System.out.println("Investigador añadido.");
+            }
+        } catch (DuracionInvalidaException e) {
+            System.out.println("No se pudo crear el documental: " + e.getMessage());
         }
     }
 
@@ -143,15 +153,18 @@ public class main {
         long views    = leerLong("Visualizaciones: ");
         long likes    = leerLong("Likes: ");
 
-        YouTubeVideo yt = new YouTubeVideo(titulo, dur, genero, canal, views, likes);
-        catalogo.add(yt);
-
-        // colaboradores
-        while (true) {
-            String colab = leerTexto("Nombre colaborador (ENTER para terminar): ");
-            if (colab.isBlank()) break;
-            Actor a = new Actor(colab, "", 0, "", "");
-            yt.addColaborador(a);
+        try {
+            YouTubeVideo yt = new YouTubeVideo(titulo, dur, genero, canal, views, likes);
+            catalogo.add(yt);
+            // colaboradores
+            while (true) {
+                String colab = leerTexto("Nombre colaborador (ENTER para terminar): ");
+                if (colab.isBlank()) break;
+                Actor a = new Actor(colab, "", 0, "", "");
+                yt.addColaborador(a);
+            }
+        } catch (DuracionInvalidaException e) {
+            System.out.println("No se pudo crear el video de YouTube: " + e.getMessage());
         }
     }
 
@@ -168,9 +181,13 @@ public class main {
         Actor prota   = nombre.isBlank() ? null
                            : new Actor(nombre, "", 0, "", "");
 
-        TikTokVideo tk = new TikTokVideo(titulo, durSeg, genero, user,
-                                         views, likes, shares, prota);
-        catalogo.add(tk);
+        try {
+            TikTokVideo tk = new TikTokVideo(titulo, durSeg, genero, user,
+                                             views, likes, shares, prota);
+            catalogo.add(tk);
+        } catch (DuracionInvalidaException e) {
+            System.out.println("No se pudo crear el video de TikTok: " + e.getMessage());
+        }
     }
 
     //  LISTAR CATÁLOGO COMPLETO

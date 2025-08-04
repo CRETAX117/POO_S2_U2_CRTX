@@ -14,7 +14,7 @@ public class Documental extends ContenidoAudiovisual {
     private String tema;
     private List<Investigador> investigadores; // Relación de asociación con Investigador
 
-    public Documental(String titulo, int duracionEnMinutos, String genero, String tema) {
+    public Documental(String titulo, int duracionEnMinutos, String genero, String tema) throws util.DuracionInvalidaException {
         super(titulo, duracionEnMinutos, genero);
         this.tema = tema;
         this.investigadores = new ArrayList<>();

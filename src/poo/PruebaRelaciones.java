@@ -21,14 +21,23 @@ public class PruebaRelaciones {
         Investigador inv2 = new Investigador("Chrome", "S.", "Química Orgánica", "Laboratorio Primario", 3, "Licenciado");
 
         // === 3. PELÍCULA ===
-        Pelicula pelicula = new Pelicula("House: Diagnóstico Final", 120, "Drama médico", "Fox");
+        Pelicula pelicula;
+        SerieDeTV serie;
+        Documental doc;
+        try {
+            pelicula = new Pelicula("House: Diagnóstico Final", 120, "Drama médico", "Fox");
+            // === 4. SERIE ===
+            serie = new SerieDeTV("Mr. Robot", 55, "Thriller psicológico", 0);
+            // === 5. DOCUMENTAL ===
+            doc = new Documental("La ciencia de Dr. Stone", 60, "Ciencia ficción", "Análisis científico del anime");
+        } catch (util.DuracionInvalidaException e) {
+            System.err.println("Error al crear contenidos: " + e.getMessage());
+            return;
+        }
         pelicula.agregarActor(actor1);
         pelicula.agregarActor(actor4);
         pelicula.eliminarActor(actor4); // simula edición
         pelicula.agregarActor(actor3);  // colaboración externa
-
-        // === 4. SERIE ===
-        SerieDeTV serie = new SerieDeTV("Mr. Robot", 55, "Thriller psicológico", 0);
 
         Temporada t1 = new Temporada(1, 10, 55, "01/06/2015", "01/09/2015");
         t1.agregarEpisodio("eps1.0_hellofriend.mov");
@@ -42,8 +51,6 @@ public class PruebaRelaciones {
         serie.eliminarTemporada(t1); // simula error y corrección
         serie.agregarTemporada(t1); // vuelve a agregar
 
-        // === 5. DOCUMENTAL ===
-        Documental doc = new Documental("La ciencia de Dr. Stone", 60, "Ciencia ficción", "Análisis científico del anime");
         doc.agregarInvestigador(inv1);
         doc.agregarInvestigador(inv2);
         doc.eliminarInvestigador(inv2); // simulación de modificación

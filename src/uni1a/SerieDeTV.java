@@ -13,7 +13,7 @@ public class SerieDeTV extends ContenidoAudiovisual {
     private int temporadas;
     private List<Temporada> listaTemporadas; // Relación de composición con Temporada
 
-    public SerieDeTV(String titulo, int duracionEnMinutos, String genero, int temporadas) {
+    public SerieDeTV(String titulo, int duracionEnMinutos, String genero, int temporadas) throws util.DuracionInvalidaException {
         super(titulo, duracionEnMinutos, genero);
         this.temporadas = temporadas;
         this.listaTemporadas = new ArrayList<>();

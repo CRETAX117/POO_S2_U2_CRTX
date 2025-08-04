@@ -1,5 +1,7 @@
 package uni1a;
 
+import util.DuracionInvalidaException;
+
 public abstract class ContenidoAudiovisual {
     private static int contar = 0;
     private String titulo;
@@ -7,9 +9,12 @@ public abstract class ContenidoAudiovisual {
     private String genero;
     private int id;
 
-    public ContenidoAudiovisual(String titulo, int duracionEnMinutos, String genero) {
+    public ContenidoAudiovisual(String titulo, int duracionEnMinutos, String genero) throws DuracionInvalidaException {
         this.id = contar++;
         this.titulo = titulo;
+        if (duracionEnMinutos <= 0) {
+            throw new DuracionInvalidaException("La duración debe ser mayor a cero");
+        }
         this.duracionEnMinutos = duracionEnMinutos;
         this.genero = genero;
     }
